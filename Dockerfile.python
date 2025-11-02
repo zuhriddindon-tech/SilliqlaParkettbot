@@ -1,0 +1,12 @@
+FROM python:3.11-slim
+
+# Create non-root user
+RUN useradd --create-home --shell /bin/bash botuser
+WORKDIR /home/botuser/app
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+RUN chown -R botuser:botuser /home/botuser/app
+USER botuser
+ENV PYTHONUNBUFFERED=1
+CMD ["sh", "-c", "python bot.py || python main.py"]

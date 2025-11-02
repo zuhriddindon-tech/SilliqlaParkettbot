@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  bot:
+    build:
+      context: .
+      # dockerfile: Dockerfile.node  # uncomment if Node
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - NODE_ENV=production
+    volumes:
+      - ./:/app:ro
+    restart: unless-stopped

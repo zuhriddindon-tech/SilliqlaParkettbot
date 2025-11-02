@@ -1,0 +1,17 @@
+[Unit]
+Description=SilliqlaParkettbot service
+After=network.target
+
+[Service]
+Type=simple
+User=silliqla
+WorkingDirectory=/home/silliqla/SilliqlaParkettbot
+EnvironmentFile=/home/silliqla/SilliqlaParkettbot/.env
+ExecStart=/home/silliqla/SilliqlaParkettbot/start.sh
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
